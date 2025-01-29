@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code de la Route</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="quiz-container">
+        <img id="questionImage" src="images/situation1.jpg" alt="Situation">
+        <h2 id="questionText">Que devez-vous faire ?</h2>
+        <div id="answers">
+            <button onclick="checkAnswer(0)">Accélérer</button>
+            <button onclick="checkAnswer(1)">Freiner</button>
+            <button onclick="checkAnswer(2)">Changer de voie</button>
+        </div>
+        <p id="feedback"></p>
+        <button onclick="nextQuestion()">Question Suivante</button>
+        <audio id="questionAudio" controls>
+            <source src="audio/question1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
