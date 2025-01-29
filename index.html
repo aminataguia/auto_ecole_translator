@@ -3,25 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code de la Route</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Série Code de la Route</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="quiz-container">
-        <img id="questionImage" src="images/situation1.jpg" alt="Situation">
-        <h2 id="questionText">Que devez-vous faire ?</h2>
-        <div id="answers">
-            <button onclick="checkAnswer(0)">Accélérer</button>
-            <button onclick="checkAnswer(1)">Freiner</button>
-            <button onclick="checkAnswer(2)">Changer de voie</button>
+    <div class="header">
+        <div class="header-options">
+            <span id="time">Temps: 00:30</span>
+            <span id="question-number">Question 1/20</span>
+            <span id="series-name">Série Code de la Route</span>
         </div>
-        <p id="feedback"></p>
-        <button onclick="nextQuestion()">Question Suivante</button>
-        <audio id="questionAudio" controls>
-            <source src="audio/question1.mp3" type="audio/mpeg">
-        </audio>
     </div>
+
+    <div class="question-container">
+        <h2>Quelle est la signification de ce panneau ?</h2>
+        <div class="translation-item">
+            <span class="translate-text">ما معنى هذه العلامة؟</span>
+            <button class="audio-btn" onclick="speakText(this.dataset.text)" data-text="ما معنى هذه العلامة؟" aria-label="Écouter la traduction de la question">&#128266;</button>
+            <div class="translation" style="display:none;">
+                <span>Signification de ce panneau ?</span>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="images/image1.jpeg" alt="Image de mise en situation">
+        </div>
+
+        <!-- Traduction de la question -->
+
+        
+        <div class="answers">
+            <button class="answer" data-answer="A">A. Interdiction de tourner à gauche</button>
+            <div class="translation-item">
+                <span class="translate-text">حظر الانعطاف إلى اليسار</span>
+                <button class="audio-btn" onclick="speakText(this.dataset.text)" data-text="حظر الانعطاف إلى اليسار" aria-label="Écouter la traduction de la réponse A">&#128266;</button>
+                <div class="translation" style="display:none;">
+                    <span>Interdiction de tourner à gauche</span>
+                </div>
+            </div>
+
+            <button class="answer" data-answer="B">B. Resserrement de la voie</button>
+            <div class="translation-item">
+                <span class="translate-text">تشديد المسار</span>
+                <button class="audio-btn" onclick="speakText(this.dataset.text)" data-text="تشديد المسار" aria-label="Écouter la traduction de la réponse B">&#128266;</button>
+                <div class="translation" style="display:none;">
+                    <span>Resserrement de la voie</span>
+                </div>
+            </div>
+
+            <button class="answer" data-answer="C">C. Zone piétonne</button>
+            <div class="translation-item">
+                <span class="translate-text">منطقة المشاة</span>
+                <button class="audio-btn" onclick="speakText(this.dataset.text)" data-text="منطقة المشاة" aria-label="Écouter la traduction de la réponse C">&#128266;</button>
+                <div class="translation" style="display:none;">
+                    <span>Zone piétonne</span>
+                </div>
+            </div>
+
+            <button class="answer" data-answer="D">D. Passage pour cyclistes</button>
+            <div class="translation-item">
+                <span class="translate-text">معبر لراكبي الدراجات</span>
+                <button class="audio-btn" onclick="speakText(this.dataset.text)" data-text="معبر لراكبي الدراجات" aria-label="Écouter la traduction de la réponse D">&#128266;</button>
+                <div class="translation" style="display:none;">
+                    <span>Passage pour cyclistes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-

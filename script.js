@@ -1,48 +1,50 @@
-const questions = [
-    {
-        image: "images/situation1.jpg",
-        text: "Que devez-vous faire dans cette situation ?",
-        answers: ["Accélérer", "Freiner", "Changer de voie"],
-        correctAnswer: 1,
-        audio: "audio/question1.mp3"
-    },
-    {
-        image: "images/situation2.jpg",
-        text: "Quel panneau indique une priorité ?",
-        answers: ["Panneau A", "Panneau B", "Panneau C"],
-        correctAnswer: 2,
-        audio: "audio/question2.mp3"
-    }
-];
-
-let currentQuestionIndex = 0;
-
-function checkAnswer(index) {
-    const feedback = document.getElementById("feedback");
-    if (index === questions[currentQuestionIndex].correctAnswer) {
-        feedback.textContent = "Bonne réponse !";
-        feedback.style.color = "green";
-    } else {
-        feedback.textContent = "Mauvaise réponse";
-        feedback.style.color = "red";
-    }
-}
-
-function nextQuestion() {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        updateQuestion();
-    }
-}
-
-function updateQuestion() {
-    const question = questions[currentQuestionIndex];
-    document.getElementById("questionImage").src = question.image;
-    document.getElementById("questionText").textContent = question.text;
-    document.getElementById("questionAudio").src = question.audio;
-    const buttons = document.querySelectorAll("#answers button");
-    buttons.forEach((button, index) => {
-        button.textContent = question.answers[index];
+document.addEventListener("DOMContentLoaded", () => {
+    // Sélection des réponses et affichage d'une alerte
+    document.querySelectorAll('.answer').forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedAnswer = button.dataset.answer;
+            alert(`Vous avez sélectionné la réponse ${selectedAnswer}`);
+        });
     });
-    document.getElementById("feedback").textContent = "";
+});
+
+    // Timer de 30 secondes
+    let timeLeft = 30;
+    const timeDisplay = document.getElementById('time');
+    const timer = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            alert('Temps écoulé!');
+        } else {
+            timeDisplay.textContent = `Temps: 00:${timeLeft < 10 ? '0' + timeLeft : timeLeft}`;
+            timeLeft--;
+        }
+    }, 1000);
+
+  // Fonction pour afficher/cacher chaque traduction
+document.querySelectorAll('.translation-item').forEach(item => {
+    const btn = item.querySelector('.audio-btn');
+    const translationDiv = item.querySelector('.translation');
+
+    // Au clic sur le bouton audio, afficher ou cacher la traduction correspondante
+    btn.addEventListener('click', () => {
+        if (translationDiv.style.display === 'none' || translationDiv.style.display === '') {
+            translationDiv.style.display = 'block'; // Afficher la traduction
+        } else {
+            translationDiv.style.display = 'none'; // Cacher la traduction
+        }
+    });
+});
+
+// Fonction de synthèse vocale en arabe
+function speakText(text) {
+    if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'ar-SA'; // Langue arabe
+        utterance.rate = 0.9; // Ajustement de la vitesse
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert("La synthèse vocale n'est pas supportée sur ce navigateur.");
+    }
 }
+
